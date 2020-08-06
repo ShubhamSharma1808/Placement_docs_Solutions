@@ -1,2 +1,2 @@
 - Q1 :- https://www.geeksforgeeks.org/count-pairs-difference-equal-k/
-- Q2 :- https://www.geeksforgeeks.org/string-transformation-using-xor-and-or/
+- Q2, BYTE the BITs :- https://www.geeksforgeeks.org/string-transformation-using-xor-and-or/
