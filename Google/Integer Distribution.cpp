@@ -7,7 +7,6 @@ vector<int> Data;
 int n,target;                                   
 
 pair<ll,ll> IntDist(ll cur){
-	//cout<<cur<<" "<<endl;
     if(cur==0)
         return {0,0};   
     if(cache[cur].first!=-1)
