@@ -31,6 +31,9 @@ int main(int argc, char const *argv[])
 		cin>>k[i];
 	
 	int u,v1;
+	/*
+	Graph and reverse graph created for finding component graph
+	*/
 	for(int i=0;i<e;i++){
 		cin>>u>>v1;
 		g[u].push_back(v1);
@@ -60,6 +63,9 @@ int main(int argc, char const *argv[])
 	
 	vector<long long> value(num,0),sum(num,0);
 	vector<int> indeg(num,0);
+	/*
+	making component grpah 
+	*/
     compg.resize(num,vector<int>());
     for(int i=1;i<=v;i++)
     	for(int j: g[i])
@@ -77,7 +83,10 @@ int main(int argc, char const *argv[])
     for(int i=1;i<num;i++)
     	if(indeg[i]==0)
     		sum[i]=value[i];
- 
+ 	/*
+	ek aur tarika hai , jo component graph ki mapping krte hai to wo jo no ata hai component ka wo already top. sort ke form mr hota sort krne ke baad
+	to alg se indeg nikalkr bar bar krne ki zarrorat ni. 
+	*/
     for(int i=1;i<num;i++){
     	if(indeg[i]==0 && !visited[i]){
     		visited[i]=1;
