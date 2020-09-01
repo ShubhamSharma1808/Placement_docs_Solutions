@@ -86,6 +86,9 @@ int main(int argc, char const *argv[])
  	/*
 	ek aur tarika hai , jo component graph ki mapping krte hai to wo jo no ata hai component ka wo already top. sort ke form mr hota sort krne ke baad
 	to alg se indeg nikalkr bar bar krne ki zarrorat ni. 
+	
+	jo mene kra hai niche wo waisa hi hai lgbhg ya bolo glti se shi hogya bcs wo already top. order me indeg stored hai 0th index pehle component ka 
+	batata jiski indeg. sbse km hogi.
 	*/
     for(int i=1;i<num;i++){
     	if(indeg[i]==0 && !visited[i]){
