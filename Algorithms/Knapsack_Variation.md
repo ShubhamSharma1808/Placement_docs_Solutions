@@ -1,4 +1,4 @@
- Q.)  Devide the given array in two equal parts so that absolute difference in sums of both the parts is minimum.
+ Q.)  Divide the given array in two equal parts so that absolute difference in sums of both the parts is minimum.
 
 Soln:-
         dp[i][j][k] = dp[i-1][j][k] || dp[i-1][j-val[i]][k-1]
