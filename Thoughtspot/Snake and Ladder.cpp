@@ -2,6 +2,7 @@
 Idea of the soln: looks like dp can be applied but it cant be due to the snakes(my view),so graph is better created
 the graph of every position and connected it with weight 1 then added edges for snakes and ladder with edge weight 0 
 and then find the shortest dist. between two ends with Dijkstra.
+quesn. https://practice.geeksforgeeks.org/problems/snake-and-ladder-problem/0
 */
 
 #include <bits/stdc++.h>
