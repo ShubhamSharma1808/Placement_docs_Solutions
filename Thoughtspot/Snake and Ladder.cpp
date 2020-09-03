@@ -15,7 +15,7 @@ typedef pair<int, int> ii;
 typedef vector<ii> vii;
 typedef vector<int> vi;
 
-//original dijkstra
+//original dijkstra(not needed to make pair ain pq and store dist it is already updated in dist vector)
 int Dijkstra(vector<vii>& g){
     vi dist(31,32);
     priority_queue<ii,vii,greater<ii>> pq;
