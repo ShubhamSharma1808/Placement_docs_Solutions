@@ -9,5 +9,4 @@ Approach:-
 - this no. of vertex will be multiplied by the size of the set which is bigger so that no. of edges will be max.
 - add the end sum up N_1 + N_2 + max(size(set1),size(set2))*remaining vertex. 
 
-
 => basically you will have a vector of pair which will store the no. edges and vertex of each component and you can also store in this that this compo. had gang        leader d or e or other , or you can have another vector mapping each vertex with its component no., this components can be find out by simple dfs traversal. 
