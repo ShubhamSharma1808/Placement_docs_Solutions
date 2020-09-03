@@ -2,6 +2,9 @@
 Idea of the soln: looks like dp can be applied but it cant be due to the snakes(my view),so graph is better created
 the graph of every position and connected it with weight 1 then added edges for snakes and ladder with edge weight 0 
 and then find the shortest dist. between two ends with Dijkstra.
+
+well it is a kind of 0-1 BFS 
+
 quesn. https://practice.geeksforgeeks.org/problems/snake-and-ladder-problem/0
 */
 
@@ -12,8 +15,9 @@ typedef pair<int, int> ii;
 typedef vector<ii> vii;
 typedef vector<int> vi;
 
+//original dijkstra
 int Dijkstra(vector<vii>& g){
-    vector<int> dist(31,32);
+    vi dist(31,32);
     priority_queue<ii,vii,greater<ii>> pq;
     int u,v,cost;
     pq.push({1,0});
@@ -35,6 +39,24 @@ int Dijkstra(vector<vii>& g){
     return dist[30];
 }
 
+//0-1 bfs algo.
+int Bfs_0_1(vector<vii>& g){
+	vi dist(31,32);
+	int u,v,cost;
+	dist[1]=0;
+	deque<int> dq;
+	dq.push_front(1);
+	while(!dq.empty()){
+		u = dq.top();
+		dq.pop_front();
+		for(auto p: g[u])
+			if(dist[p.first]>dist[u]+p.second){
+                dist[p.first] = dist[u]+p.second;
+                cost==0 ? dq.push_front(p.first) : dq.push_back(p.first);
+			}		
+	}
+	return dist[30];
+}
 
 int main() {
 	//code
@@ -65,7 +87,8 @@ int main() {
 	   //         cout<<p.first<<" "<<p.second<<",";
 	   //     }cout<<endl;
 	   // }
-	    cout<<Dijkstra(g)<<endl;
+	    //cout<<Dijkstra(g)<<endl;
+	    cout<<Bfs_0_1(g)<<endl;	
 	}
 	return 0;
 }
