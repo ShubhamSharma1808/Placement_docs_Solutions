@@ -70,7 +70,7 @@ T lcm(T a, T b){	return a/gcd(a, b) * b;		}
  }
  
 
-int updated_solve(vector<vii>& cache, vi& oprnd, vector<char>& oprn, int i, int j){
+ii updated_solve(vector<vii>& cache, vi& oprnd, vector<char>& oprn, int i, int j){
      if(cache[i][j].first!=-1)
          return cache[i][j];     
      if(i==j){        
@@ -130,7 +130,8 @@ int main()
 		}
 	}	
   //cout<<solve(cache,str,0,str.size()-1);	
-	cout<<solve(cache,oprnd,oprn,0,sz(oprnd)-1);
+	ii tmp = solve(cache,oprnd,oprn,0,sz(oprnd)-1);
+	cout<<tmp.first<<" , "<<tmp.second;
   return 0;
 }
  
