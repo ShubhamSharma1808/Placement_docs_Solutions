@@ -1,5 +1,7 @@
 /*
  * Dp variation of matrix chain multiplication.
+ * it cant handle mulitple digit value test case , for that we need diff. implemetation like we will need to have two diff. arrays storing values 
+ * of operands and operators. this is the one case. one more issue is that we just cant take local max to find the global max
  */
 #include<bits/stdc++.h>
 using namespace std;
