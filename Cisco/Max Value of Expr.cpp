@@ -43,7 +43,7 @@ T gcd(T a, T b){	return b ? gcd(b, a%b): a; }
 template<typename T>
 T lcm(T a, T b){	return a/gcd(a, b) * b;		}
 
- 
+ /*
  int solve(vector<vi>& cache, string str, int i, int j){
      if(cache[i][j]!=-1)
          return cache[i][j];     
@@ -68,7 +68,7 @@ T lcm(T a, T b){	return a/gcd(a, b) * b;		}
    cache[i][j]=mx;  
    return mx;
  }
- 
+*/ 
 
 ii updated_solve(vector<vii>& cache, vi& oprnd, vector<char>& oprn, int i, int j){
      if(cache[i][j].first!=-1)
@@ -79,19 +79,20 @@ ii updated_solve(vector<vii>& cache, vi& oprnd, vector<char>& oprn, int i, int j
         return cache[i][j];
      }
    ii tmp1,tmp2;
-   int mn = INT_MIN, mx = INT_MIN; 
+   int mx = INT_MIN, mn = INT_MAX; 
    rep(k,i,j){
-     tmp1 = solve(cache,str,i,k);
-     tmp2 = solve(cache,str,k+1,j); 
+     tmp1 = updated_solve(cache,oprnd,oprn,i,k);
+     tmp2 = updated_solve(cache,oprnd,oprn,k+1,j); 
      //cout<<tmp1<<" "<<tmp2<<endl;
-		 int a0=tmp1.first,a1=tmp1.second,b0=tmp2.first,b1=tmp2.second;
-     if(oprn[k]=='+'){
+	int a0=tmp1.first,a1=tmp1.second,b0=tmp2.first,b1=tmp2.second;
+    int t1,t2;
+    if(oprn[k]=='+'){
 			t1 = max(a0+b0,max(a0+b1,max(a1+b0,a1+b1)));
 			t2 = min(a0+b0,min(a0+b1,min(a1+b0,a1+b1)));
       mx = max(mx,t1);
 			mn = min(mn,t2);
 		 }
-		 else  if(oprn[k]=='-'){
+	else  if(oprn[k]=='-'){
 			t1 = max(a0-b0,max(a0-b1,max(a1-b0,a1-b1)));
 			t2 = min(a0-b0,min(a0-b1,min(a1-b0,a1-b1)));
       mx = max(mx,t1);
@@ -113,7 +114,7 @@ int main()
 	fastio;
   string str;
   cin>>str;
-  vector<vii> cache(sz(str),vi(sz(str),{-1,-1}));
+  vector<vii> cache(sz(str),vii(sz(str),{-1,-1}));
   vi oprnd;
   vector<char> oprn;
 	int tmp=0,count=1;
@@ -128,10 +129,13 @@ int main()
 			count=1;
 			oprn.eb(str[i]);
 		}
-	}	
+	}
+    oprnd.eb(tmp);
+    rep(i,0,sz(oprnd))cout<<oprnd[i]<<" ";
+    cout<<endl;
+    rep(i,0,sz(oprn))cout<<oprn[i]<<" ";
   //cout<<solve(cache,str,0,str.size()-1);	
-	ii tmp = solve(cache,oprnd,oprn,0,sz(oprnd)-1);
-	cout<<tmp.first<<" , "<<tmp.second;
+	ii tp = updated_solve(cache,oprnd,oprn,0,sz(oprnd)-1);
+	cout<<tp.first<<" , "<<tp.second;
   return 0;
 }
- 
