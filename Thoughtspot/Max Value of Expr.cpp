@@ -1,6 +1,5 @@
 /*
- * Create Component Graph, for each SCC its appropriate cost.
- * DP on DAG.
+ * Dp variation of matrix chain multiplication.
  */
 #include<bits/stdc++.h>
 using namespace std;
@@ -42,19 +41,28 @@ template<typename T>
 T lcm(T a, T b){	return a/gcd(a, b) * b;		}
 
  
- int solve(String str, int i, int j){
-   if(i==j)
-    return atoi(str[i]);
+ int solve(vector<vi>& cache, string str, int i, int j){
+     if(cache[i][j]!=-1)
+         return cache[i][j];     
+     if(i==j){        
+        printf("value returned from [ %d , %d ] is %d\n",i,j,str[i]-'0');
+        cache[i][j] = str[i]-'0'; 
+        return str[i]-'0';
+     }
    int tmp1,tmp2,mx = INT_MIN; 
    rep(k,i,j){
-     tmp1 = solve(str,i,k);
-     tmp2 = solve(str,k+1,j); 
+     tmp1 = solve(cache,str,i,k);
+     tmp2 = solve(cache,str,k+2,j); 
+     //cout<<tmp1<<" "<<tmp2<<endl;
      if(str[k+1]=='+')
       mx = max(mx,tmp1+tmp2);
      else  if(str[k+1]=='-')
       mx = max(mx,tmp1-tmp2);
      else mx = max(mx,tmp1*tmp2);
+     k++;
    }
+   printf("value returned from [ %d , %d ] is %d\n",i,j,mx);
+   cache[i][j]=mx;  
    return mx;
  }
  
@@ -63,7 +71,8 @@ int main()
 	fastio;
   string str;
   cin>>str;
-  cout<<solve(str,0,str.size()-1);
+  vector<vi> cache(str.size(),vi(str.size(),-1));
+  cout<<solve(cache,str,0,str.size()-1);
   return 0;
 }
  
