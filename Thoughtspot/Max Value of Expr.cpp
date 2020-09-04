@@ -45,17 +45,17 @@ T lcm(T a, T b){	return a/gcd(a, b) * b;		}
  int solve(String str, int i, int j){
    if(i==j)
     return atoi(str[i]);
-   int tmp1,tmp2,mn = INF; 
+   int tmp1,tmp2,mx = INT_MIN; 
    rep(k,i,j){
      tmp1 = solve(str,i,k);
      tmp2 = solve(str,k+1,j); 
      if(str[k+1]=='+')
-      mn = min(mn,tmp1+tmp2);
+      mx = max(mx,tmp1+tmp2);
      else  if(str[k+1]=='-')
-      mn = min(mn,tmp1-tmp2);
-     else mn = min(mn,tmp1*tmp2);
+      mx = max(mx,tmp1-tmp2);
+     else mx = max(mx,tmp1*tmp2);
    }
-   return mn;
+   return mx;
  }
  
 int main()
